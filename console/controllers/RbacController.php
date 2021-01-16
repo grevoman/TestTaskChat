@@ -1,6 +1,7 @@
 <?php
 namespace console\controllers;
 
+use common\models\User;
 use Yii;
 use yii\console\Controller;
 
@@ -36,7 +37,7 @@ class RbacController extends Controller
         $auth->addChild($user, $createMessage);
 
         // добавляем роль "admin" и даём роли разрешение "manageUser", "manageMessage"
-        // а также все разрешения роли "author"
+        // а также все разрешения роли "user"
         $admin = $auth->createRole('admin');
         $auth->add($admin);
         $auth->addChild($admin, $manageUser);
@@ -44,8 +45,9 @@ class RbacController extends Controller
         $auth->addChild($admin, $accessAdminArea);
         $auth->addChild($admin, $user);
 
-        // Назначение ролей пользователям. 1 и 2 это IDs возвращаемые IdentityInterface::getId()
-        // обычно реализуемый в модели User.
-        $auth->assign($admin, 1);
+        $userAdmin = User::findOne(['username' => 'admin']);
+        $userUser = User::findOne(['username' => 'user']);
+        $auth->assign($admin, $userAdmin->getId());
+        $auth->assign($user, $userUser->getId());
     }
 }

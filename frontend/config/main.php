@@ -10,6 +10,7 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'language' => 'ru-RU',
+    'defaultRoute' => '/chat',
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
@@ -45,6 +46,11 @@ return [
             ],
         ],
         */
+    ],
+    'modules' => [
+        'chat' => [
+            'class' => 'app\modules\chat\Module',
+        ],
     ],
     'params' => $params,
 ];

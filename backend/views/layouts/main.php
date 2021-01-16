@@ -7,6 +7,7 @@ use backend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 
@@ -62,7 +63,29 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
-        <?= $content ?>
+        <div class='container-fluid'>
+            <div class='row'>
+                <div class='col-sm-3 col-md-2 sidebar'>
+                    <ul class='nav nav-sidebar'>
+                        <li><a href='#'>Пользователи</a></li>
+                        <li><a href='#'>Некорректные сообщения</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class='container-fluid'>
+            <div class='row'>
+                <div class='col-sm-3 col-md-2 sidebar'>
+                    <ul class='nav nav-sidebar'>
+                        <li><a href='<?= Url::to(['/user']) ?>'>Пользователи</a></li>
+                        <li><a href='<?= Url::to(['/chat/default/get-incorrect-messages']) ?>'>Некорректные сообщения</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main'>
+            <?= $content ?>
+        </div>
     </div>
 </div>
 

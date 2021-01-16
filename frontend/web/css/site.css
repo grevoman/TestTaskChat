@@ -118,3 +118,8 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.admin-message {
+    font-weight: bold;
+    font-style: italic;
+}
